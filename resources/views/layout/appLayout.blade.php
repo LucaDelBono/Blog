@@ -11,9 +11,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
+    @livewireStyles
 </head>
 
-<body class="font-light antialiased">
+<body class="font-light antialiased flex flex-col min-h-screen">
     @yield('content')
 </body>
 

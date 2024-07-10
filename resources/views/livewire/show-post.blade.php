@@ -1,8 +1,8 @@
-@section('title', $post->title.' | ')
+@section('title', $post->title . ' | ')
 <div>
     @include('layout.navbar')
     @include('include.successMessage')
-    
+
     <main class="container mx-auto px-5 flex flex-grow">
         <article class="col-span-4 md:col-span-3 mt-10 mx-auto py-5 w-full" style="max-width:700px">
             <img class="w-full my-2 rounded-lg" src="" alt="">
@@ -44,14 +44,21 @@
                                     </form>
                                 @else
                                     <button wire:click="edit({{ $post->id }})"
-                                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+                                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mr-2">
                                         Modifica
                                     </button>
-                                    <button wire:click="delete({{ $post->id }})"
-                                        onclick="confirm('Vuoi eliminare definitivamente questo post?') || event.stopImmediatePropagation()"
-                                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+                                    <button x-data x-on:click="$dispatch('open-modal')"
+                                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
                                         Elimina
                                     </button>
+                                    <x-modal title="Eliminare definitivamente il post?">
+                                        @slot('body')
+                                            <button wire:click="delete({{ $post->id }})"
+                                                class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+                                                Conferma
+                                            </button>
+                                        @endslot
+                                    </x-modal>
                                 @endif
                             </div>
 
@@ -61,7 +68,7 @@
             </div>
 
             @if ($editing ?? false)
-                <form wire:submit="update({{ $post->id }})" enctype="multipart/form-data">
+                <form enctype="multipart/form-data">
                     <div class="mb-5">
                         <label for="title"></label>
                         <textarea wire:model="title"
@@ -94,14 +101,19 @@
                     <div wire:loading wire:target="image">
                         <span class="text-green-500">Uploading...</span>
                     </div>
-                   
-                    <button
-                        class="text-gray bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-                        type="submit"
-                        onclick="confirm('Vuoi salvare le modifiche?') || event.stopImmediatePropagation()"
-                        >
+
+                    <button x-data x-on:click="$dispatch('open-modal')" type="button"
+                        class="text-gray bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
                         Salva modifiche
                     </button>
+                    <x-modal title="Confermare modifiche?">
+                        @slot('body')
+                            <button wire:submit="update({{ $post->id }})" 
+                                class="text-white bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-primary-800 font-medium rounded text-sm px-5 py-2.5 text-center hover:bg-primary-800">
+                                Conferma
+                            </button>
+                        @endslot
+                    </x-modal>
                 </form>
             @else
                 <div class="article-content py-3 text-gray-800 text-lg text-justify">
