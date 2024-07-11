@@ -19,7 +19,7 @@
         @endif
         <div class="flex items-center justify-center gap-4">
             {{$body}}
-            <button x-on:click="$dispatch('close-modal')" class="bg-red-500 hover:bg-red-400 px-4 py-2 text-gray-900 rounded font-bold">Annulla</button>
+            <button x-on:click="$dispatch('close-modal')" type="button" class="bg-red-500 hover:bg-red-400 px-4 py-2 text-gray-900 rounded font-bold">Annulla</button>
         </div>
     </div>
 </div>

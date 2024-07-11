@@ -12,6 +12,8 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Livewire\CreatePost;
 use App\Livewire\ShowPost;
+use App\Livewire\EditPost;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,3 +57,5 @@ Route::resource('userSettingsDelete', DeleteUserController::class)->only(['show'
 Route::get('post/create', CreatePost::class)->middleware('auth')->name('post.create');
 
 Route::get('post/{post}', ShowPost::class)->name('post.show');
+
+Route::get('post/{post}/edit', EditPost::class)->name('post.edit')->middleware('auth');
