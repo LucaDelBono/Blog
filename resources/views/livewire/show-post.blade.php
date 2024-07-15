@@ -7,7 +7,7 @@
         <article class="col-span-4 md:col-span-3 mt-10 mx-auto py-5 w-full" style="max-width:700px">
             <img class="w-full my-2 rounded-lg" src="" alt="">
             <h1 class="text-4xl font-bold text-left text-gray-800">
-                    {{ $post->title }}
+                {{ $post->title }}
             </h1>
             <div class="mt-2 flex justify-between items-center">
                 <div class="flex py-5 text-base items-center">
@@ -32,22 +32,20 @@
                     @can('update', $post)
                         <div>
                             <div class="flex items-center">
-                                    <button 
-                                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mr-2">
-                                        <a href="{{route('post.edit', $post->id)}}">Modifica</a>
-                                    </button>
-                                    <button x-data x-on:click="$dispatch('open-modal')"
-                                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
-                                        Elimina
-                                    </button>
-                                    <x-modal title="Eliminare definitivamente il post?">
-                                        @slot('body')
-                                            <button wire:click="delete({{ $post->id }})"
-                                                class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
-                                                Conferma
-                                            </button>
-                                        @endslot
-                                    </x-modal>
+                                <a class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mr-2"
+                                    wire:navigate href="{{ route('post.edit', $post->id) }}">Modifica</a>
+                                <button x-data x-on:click="$dispatch('open-modal' , { name : 'post' })"
+                                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+                                    Elimina
+                                </button>
+                                <x-modal name="post" title="Eliminare definitivamente il post?">
+                                    @slot('body')
+                                        <button wire:click="delete({{ $post->id }})"
+                                            class="bg-green-500 hover:bg-green-400 text-gray-800 font-bold py-2 px-4 rounded">
+                                            Conferma
+                                        </button>
+                                    @endslot
+                                </x-modal>
                             </div>
 
                         </div>
@@ -55,13 +53,13 @@
                 @endauth
             </div>
 
-           
-                <div class="article-content py-3 text-gray-800 text-lg text-justify">
-                    {{ $post->content }}
-                </div>
+
+            <div class="article-content py-3 text-gray-800 text-lg text-justify">
+                {{ $post->content }}
+            </div>
 
 
-                <livewire:comment :post="$post" />
+            <livewire:comment :post="$post" />
 
         </article>
     </main>

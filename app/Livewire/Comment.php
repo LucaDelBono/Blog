@@ -26,7 +26,6 @@ class Comment extends Component
         ModelsComment::create($validated);
         $this->reset(['content']);
         $post= $this->post;
-        return redirect()->route('post.show',compact('post'));
     }
 
     public function delete(ModelsComment $comment){

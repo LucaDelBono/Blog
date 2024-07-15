@@ -23,14 +23,14 @@
                         @error('password')
                             <div class="text-gray-900">{{ $message }}</div>
                         @enderror
-                        <button x-data x-on:click="$dispatch('open-modal')" type="button"
+                        <button x-data x-on:click="$dispatch('open-modal', {name : 'deleteUser'})" type="button"
                             class="text-white bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-primary-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-primary-800">
                             Conferma
                         </button>
-                        <x-modal title="Confermi l'eliminazione dell'accout?">
+                        <x-modal name="deleteUser" title="Confermi l'eliminazione dell'accout?">
                             @slot('body')
                                 <button type="submit" x-on:click="$dispatch('close-modal')"
-                                    class="text-white bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-primary-800 font-medium rounded text-sm px-5 py-2.5 text-center hover:bg-primary-800">
+                                    class="text-white bg-green-500 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-primary-800 font-medium rounded text-sm px-5 py-2.5 text-center hover:bg-primary-800">
                                     Conferma
                                 </button>
                             @endslot

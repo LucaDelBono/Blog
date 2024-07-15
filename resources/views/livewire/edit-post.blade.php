@@ -33,7 +33,7 @@
                         @can('update', $post)
                             <div>
                                 <div class="flex items-center">
-                                    <a href="{{route('post.show', $post->id)}}"
+                                    <a wire:navigate href="{{route('post.show', $post->id)}}"
                                         class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
                                         Indietro
                                 </a>
@@ -78,14 +78,14 @@
                         <span class="text-green-500">Uploading...</span>
                     </div>
 
-                    <button x-data x-on:click="$dispatch('open-modal')" type="button"
+                    <button x-data x-on:click="$dispatch('open-modal' , { name : 'modificaPost'})" type="button"
                         class="text-gray bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
                         Salva modifiche
                     </button>
-                    <x-modal title="Confermare modifiche?">
+                    <x-modal name="modificaPost" title="Confermare modifiche?">
                         @slot('body')
                             <button type="submit"
-                                class="text-white bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-primary-800 font-medium rounded text-sm px-5 py-2.5 text-center hover:bg-primary-800">
+                                class="text-white bg-green-500 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-primary-800 font-medium rounded text-sm px-5 py-2.5 text-center hover:bg-primary-800">
                                 Conferma
                             </button>
                         @endslot
