@@ -1,5 +1,13 @@
 @if (session()->has('success'))
-    <div class="flex items-center p-4 mb-4 text-sm text-gray-900 bg-yellow-100"
+    <div x-data="{show : true}" 
+        x-effect="setTimeout(()=> show = false, 3000)" x-show="show" 
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 scale-90"
+        x-transition:enter-end="opacity-100 scale-100"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-90"
+        class="flex items-center p-4 mb-4 text-sm text-gray-900 bg-yellow-100"
         role="alert">
         <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
             fill="currentColor" viewBox="0 0 20 20">

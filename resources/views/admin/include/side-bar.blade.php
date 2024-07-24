@@ -4,7 +4,7 @@
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white">
         <ul class="space-y-2 font-medium text-lg">
             <li>
-                <a href="{{ route('admin.index') }}"
+                <a wire:navigate href="{{ route('admin.index') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-yellow-500 group">
                     <div
                     class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white">
@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.posts') }}"
+                <a wire:navigate href="{{ route('admin.posts') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-yellow-500 group">
                     <div
                     class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white">
@@ -26,7 +26,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.users.index') }}"
+                <a wire:navigate href="{{ route('admin.users') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-yellow-500 group">
                     <div
                         class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white">
@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.comments.index') }}"
+                <a wire:navigate href="{{ route('admin.comments') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-yellow-500 group">
                     <div
                     class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white">

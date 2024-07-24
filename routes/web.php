@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\CommentAdminController;
 use App\Http\Controllers\Admin\IndexAdminController;
 use App\Http\Controllers\Admin\PostAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
@@ -10,6 +9,9 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PasswordSettingsController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
+use App\Livewire\Admin\Comments;
+use App\Livewire\Admin\Posts;
+use App\Livewire\Admin\Users;
 use App\Livewire\CreatePost;
 use App\Livewire\ShowPost;
 use App\Livewire\EditPost;
@@ -41,11 +43,15 @@ Route::middleware(['auth','can:admin'])->prefix('/admin')->as('admin.')->group(f
     
     Route::get('/', [IndexAdminController::class, 'index'])->name('index');
 
-    Route::get('/posts', [PostAdminController::class, 'index'])->name('posts');
+    Route::get('/posts', Posts::class)->name('posts');
 
-    Route::resource('/users',UserAdminController::class)->only(['index','edit','update']);
+    Route::get('/user/{user}/edit', [UserAdminController::class, 'edit'])->name('userEdit');
 
-    Route::resource('comments', CommentAdminController::class)->only(['index','destroy']);
+    Route::put('/user/{user}', [UserAdminController::class, 'update'])->name('userUpdate');
+
+    Route::get('/users',Users::class)->name('users');
+
+    Route::get('/comments', Comments::class)->name('comments');
 });
 
 Route::resource('userSettings', SettingsController::class)->only(['edit','index','update'])->middleware('auth');

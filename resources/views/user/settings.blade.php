@@ -1,7 +1,7 @@
 @extends('layout.appLayout')
 @section('content')
     @include('layout.navbar')
-    @include('include.successMessage')
+    @include('components.successMessage')
     <div class="mt-10">
 
         <div class="flex items-center justify-center">

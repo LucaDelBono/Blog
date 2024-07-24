@@ -1,6 +1,6 @@
 <div>
     @include('layout.navbar')
-    @include('include.successMessage')
+    @include('components.successMessage')
     <main class="container mx-auto px-5 flex flex-grow">
         <article class="col-span-4 md:col-span-3 mt-10 mx-auto py-5 w-full" style="max-width:700px">
             <img class="w-full my-2 rounded-lg" src="" alt="">

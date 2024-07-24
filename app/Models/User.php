@@ -83,4 +83,8 @@ class User extends Authenticatable
     public function isAuthor(){
         return $this->role === 'Autore';
     }
+
+    public function scopeSearch($query, $search){
+        $query->where('nickname', 'like', "%{$search}%")->orWhere('role', 'like', "%{$search}%");
+    }
 }
