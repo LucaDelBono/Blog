@@ -16,7 +16,7 @@
 
                     <li>
                         <a class="text-xl flex space-x-2 items-center hover:text-yellow-500 text-gray-500"
-                            href="{{ route('blogLatest') }}">
+                            href="{{ route('blog') }}">
                             Post
                         </a>
                     </li>

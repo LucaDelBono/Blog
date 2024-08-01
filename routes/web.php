@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Admin\IndexAdminController;
-use App\Http\Controllers\Admin\PostAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DeleteUserController;
@@ -31,9 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
-Route::get('/blog/oldest', [BlogController::class, 'blogOldest'])->name('blogOldest');
-
-Route::get('/blog/latest', [BlogController::class, 'blogLatest'])->name('blogLatest');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
 Route::get('/profile',[UserController::class, 'profile'])->name('profile');
 
