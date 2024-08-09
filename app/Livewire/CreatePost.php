@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
@@ -24,6 +25,9 @@ class CreatePost extends Component
     #[Validate('required')]
     public $user_id;
 
+    #[Validate('nullable')]
+    public $category_id;
+
     public function store()
     {
         $this->authorize('create', Post::class);
@@ -32,15 +36,16 @@ class CreatePost extends Component
             $validated['image'] = $this->image->store('thumbnail', 'public');
         }
         Post::create($validated);
-        $this->reset(['title','content','image', 'user_id']);
+        $this->reset(['title','content','image', 'user_id','category_id']);
         return session()->flash('success', 'Post creato con successo');
     }
 
     public function render()
     {
         $this->authorize('create', Post::class);
+        $categories= Category::get();
         $users = DB::table('users')->whereIn('role', ['Admin', 'Autore', 'Redattore'])->get();
-        return view('livewire.create-post', compact('users'))
+        return view('livewire.create-post', compact(['users','categories']))
             ->extends('layout.appLayout')
             ->section('content');
     }

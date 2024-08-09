@@ -11,7 +11,7 @@
     
 
     <div x-on:click="show = false" class="fixed inset-0 bg-gray-300 opacity-50"></div>
-    <div class="bg-white rounded m-auto fixed inset-0 max-w-xl h-40">
+    <div class="bg-white rounded m-auto fixed inset-0 max-w-xl h-52">
         @if(isset($title))
         <div class="py-3 text-black flex items-center justify-center text-lg mb-5">
             {{ $title }}
@@ -19,7 +19,6 @@
         @endif
         <div class="flex items-center justify-center gap-4">
             {{$body}}
-            <button x-on:click="$dispatch('close-modal')" type="button" class="bg-red-500 hover:bg-red-400 px-4 py-2 text-black rounded font-bold">Annulla</button>
         </div>
     </div>
 </div>

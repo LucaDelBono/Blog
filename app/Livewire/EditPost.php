@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -20,6 +22,12 @@ class EditPost extends Component
     #[Validate('nullable|image|max:2048')]
     public $image;
 
+    #[Validate('required')]
+    public $user_id;
+
+    #[Validate('nullable')]
+    public $category_id;
+
     public Post $post;
 
     public function update()
@@ -33,7 +41,9 @@ class EditPost extends Component
         }else{
             $this->post->update([
                 'title'=>$this->title,
-                'content'=>$this->content
+                'content'=>$this->content,
+                'user_id'=>$this->user_id,
+                'category_id'=>$this->category_id
             ]);
         }
         return redirect()->route('post.show', $this->post->id)->with('success', 'Post modificato con successo');
@@ -43,8 +53,13 @@ class EditPost extends Component
     {
         $this->title= $this->post->title;
         $this->content= $this->post->content;
+        $this->user_id= $this->post->user_id;
+        $this->category_id= $this->post->category_id;
         $post= $this->post;
-        return view('livewire.edit-post', compact('post'))
+        $users= User::get();
+        $categories= Category::get();
+
+        return view('livewire.edit-post', compact(['post', 'users','categories']))
         ->extends('layout.appLayout')
         ->section('content');
     }

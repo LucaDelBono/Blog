@@ -25,7 +25,6 @@ class Comment extends Component
         $validated['post_id']= $this->post->id;
         ModelsComment::create($validated);
         $this->reset(['content']);
-        $post= $this->post;
     }
 
     public function delete(ModelsComment $comment){

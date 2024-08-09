@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Models\Category;
 
 class BlogController extends Controller
 {
     public function index(){    
         
-        return view('blog.index');
+        $categories= Category::inRandomOrder()->limit(3)->get();
+        return view('blog.index', compact('categories'));
 
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PasswordSettingsController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
+use App\Livewire\Admin\Categories;
 use App\Livewire\Admin\Comments;
 use App\Livewire\Admin\Posts;
 use App\Livewire\Admin\Users;
@@ -49,6 +50,8 @@ Route::middleware(['auth','can:admin'])->prefix('/admin')->as('admin.')->group(f
     Route::get('/users',Users::class)->name('users');
 
     Route::get('/comments', Comments::class)->name('comments');
+
+    Route::get('/categories', Categories::class)->name('categories');
 });
 
 Route::resource('userSettings', SettingsController::class)->only(['edit','index','update'])->middleware('auth');

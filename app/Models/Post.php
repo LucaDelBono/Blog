@@ -14,12 +14,17 @@ class Post extends Model
         'content',
         'image',
         'user_id',
+        'category_id'
     ];
 
     public function getImageUrl(){
         if($this->image){
             return url('storage/' . $this->image);
         }
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function comment(){

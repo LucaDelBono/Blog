@@ -33,10 +33,10 @@
                         @can('update', $post)
                             <div>
                                 <div class="flex items-center">
-                                    <a wire:navigate href="{{route('post.show', $post->id)}}"
+                                    <a wire:navigate href="{{ route('post.show', $post->id) }}"
                                         class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
                                         Indietro
-                                </a>
+                                    </a>
                                 </div>
 
                             </div>
@@ -78,8 +78,31 @@
                         <span class="text-green-500">Uploading...</span>
                     </div>
 
+                    <select wire:model="user_id"
+                        class="bg-gray-90 border border-gray-600 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 ">
+                        <option value="">Autore post</option>
+                        @foreach ($users as $user)
+                            <option wire:key="{{ $user->id }}" value="{{ $user->id }}">{{ $user->nickname }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('user_id')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+                    <select wire:model="category_id"
+                        class="bg-gray-90 mt-5 border border-gray-600 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 ">
+                        <option value="">Seleziona categoria</option>
+                        @foreach ($categories as $category)
+                            <option wire:key="{{ $category->id }}" value="{{ $category->id }}">{{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('category_id')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+
                     <button x-data x-on:click="$dispatch('open-modal' , { name : 'modificaPost'})" type="button"
-                        class="text-gray bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                        class="mt-5 text-gray bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
                         Salva modifiche
                     </button>
                     <x-modal name="modificaPost" title="Confermare modifiche?">
@@ -91,7 +114,7 @@
                         @endslot
                     </x-modal>
                 </form>
-            </article>        
+            </article>
         </main>
         @include('layout.footer')
     </div>

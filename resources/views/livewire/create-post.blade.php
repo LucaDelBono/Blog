@@ -38,22 +38,34 @@
                     @enderror
                     @if ($image)
                             <img class="rounded w-15 h-15 mt-5 block" src="{{ $image->temporaryUrl() }}">
-                        @endif
+                    @endif
+                    <div wire:loading wire:target="image">
+                        <span class="text-green-500">Uploading...</span>
+                    </div>
                 </div>
-                <div wire:loading wire:target="image">
-                    <span class="text-green-500">Uploading...</span>
-                </div>
+                
                 <br>
 
                 <select wire:model="user_id"
                     class="bg-gray-90 border border-gray-600 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 ">
-                    <option value="">Autore articolo</option>
+                    <option value="">Autore post</option>
                     @foreach ($users as $user)
                         <option wire:key="{{ $user->id }}" value="{{ $user->id }}">{{ $user->nickname }}
                         </option>
                     @endforeach
                 </select>
                 @error('user_id')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
+                <select wire:model="category_id"
+                    class="bg-gray-90 mt-5 border border-gray-600 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 ">
+                    <option value="">Seleziona categoria</option>
+                    @foreach ($categories as $category)
+                        <option wire:key="{{ $category->id }}" value="{{ $category->id }}">{{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('category_id')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
                 <button
