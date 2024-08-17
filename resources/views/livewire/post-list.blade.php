@@ -1,13 +1,31 @@
 <div>
     <div class="flex justify-between items-center border-b border-gray-100">
         <div id="filter-selector" class="flex items-center space-x-4 font-light ">
-                <button wire:click="setSort('desc')" class="{{$sort === 'desc' ? 'text-gray-900 border-b border-gray-700' : 'text-gray-500'}} py-4">Novità</button>
-                <button wire:click="setSort('asc')" class="{{$sort === 'asc' ? 'text-gray-900 border-b border-gray-700' : 'text-gray-500'}} py-4">Datato</button>
+            <button wire:click="setSort('desc')"
+                class="{{ $sort === 'desc' ? 'text-gray-900 border-b border-gray-700' : 'text-gray-500' }} py-4">Novità</button>
+            <button wire:click="setSort('asc')"
+                class="{{ $sort === 'asc' ? 'text-gray-900 border-b border-gray-700' : 'text-gray-500' }} py-4">Datato</button>
         </div>
     </div>
+    @if ($this->category)
+    <div class="py-5">
+        <a href="{{ route('blog', ['category' => $category]) }}"
+            class="bg-gray-600 
+                    text-white
+                    rounded-xl px-4 py-1 text-base">
+            {{ $this->category }}</a>
+    </div>
+    @elseif ($this->search)
+    <div class="py-5">
+        <a href=""
+            class="bg-gray-600 
+                    text-white 
+                    rounded-xl px-4 py-1 text-base">{{ $this->search }}</a>
+    </div>
+    @endif
 
     @foreach ($posts as $post)
-        <div class="py-4">
+        <div class="py-3">
             <article class="[&:not(:last-child)]:border-b border-gray-100 pb-5">
                 <div class="article-body grid grid-cols-12 gap-3 mt-5 items-start">
                     <div class="article-thumbnail col-span-5 flex items-center">
@@ -52,6 +70,5 @@
             </article>
         </div>
     @endforeach
-    <div class="my-3">{{$posts->links()}}</div>
-    
+    <div class="my-3">{{ $posts->links() }}</div>
 </div>

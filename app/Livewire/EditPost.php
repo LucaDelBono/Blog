@@ -26,7 +26,7 @@ class EditPost extends Component
     public $user_id;
 
     #[Validate('nullable')]
-    public $category_id;
+    public $category;
 
     public Post $post;
 
@@ -43,7 +43,7 @@ class EditPost extends Component
                 'title'=>$this->title,
                 'content'=>$this->content,
                 'user_id'=>$this->user_id,
-                'category_id'=>$this->category_id
+                'category'=>$this->category
             ]);
         }
         return redirect()->route('post.show', $this->post->id)->with('success', 'Post modificato con successo');

@@ -89,15 +89,15 @@
                     @error('user_id')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
-                    <select wire:model="category_id"
-                        class="bg-gray-90 mt-5 border border-gray-600 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 ">
+                    <select wire:model="category"
+                        class="bg-gray-90 mt-5 border border-gray-600 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400" required>
                         <option value="">Seleziona categoria</option>
                         @foreach ($categories as $category)
-                            <option wire:key="{{ $category->id }}" value="{{ $category->id }}">{{ $category->name }}
+                            <option wire:key="{{ $category->id }}" value="{{ $category->name }}">{{ $category->name }}
                             </option>
                         @endforeach
                     </select>
-                    @error('category_id')
+                    @error('category')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
 

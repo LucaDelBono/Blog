@@ -14,7 +14,7 @@ class Post extends Model
         'content',
         'image',
         'user_id',
-        'category_id'
+        'category'
     ];
 
     public function getImageUrl(){

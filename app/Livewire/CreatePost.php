@@ -26,7 +26,7 @@ class CreatePost extends Component
     public $user_id;
 
     #[Validate('nullable')]
-    public $category_id;
+    public $category;
 
     public function store()
     {
@@ -36,7 +36,7 @@ class CreatePost extends Component
             $validated['image'] = $this->image->store('thumbnail', 'public');
         }
         Post::create($validated);
-        $this->reset(['title','content','image', 'user_id','category_id']);
+        $this->reset(['title','content','image', 'user_id','category']);
         return session()->flash('success', 'Post creato con successo');
     }
 

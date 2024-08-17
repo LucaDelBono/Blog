@@ -61,7 +61,7 @@
             @if(isset($post->category))
             <div class="flex items-center space-x-4 mt-10">
                 <a href="#" class="bg-gray-600 text-white rounded-xl px-3 py-1 text-base">
-                    {{$post->category->name}}</a>
+                    {{$post->category}}</a>
             </div>
             @endif
 
