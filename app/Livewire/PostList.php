@@ -24,7 +24,7 @@ class PostList extends Component
     public function setSort($sort)
     {
         $this->sort = ($sort === 'desc') ? 'desc' : 'asc';
-        $this->reset(['category', 'search']);
+        $this->resetFilter();
     }
 
     #[On('search')]
@@ -32,6 +32,11 @@ class PostList extends Component
     {
         $this->search= $search;
     } 
+
+    public function resetFilter()
+    {
+        $this->reset(['category','search']);
+    }
 
     public function render()
     {

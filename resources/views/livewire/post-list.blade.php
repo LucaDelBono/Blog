@@ -8,20 +8,26 @@
         </div>
     </div>
     @if ($this->category)
-    <div class="py-5">
-        <a href="{{ route('blog', ['category' => $category]) }}"
-            class="bg-gray-600 
+        <div class="py-5">
+            <a href="{{ route('blog', ['category' => $category]) }}"
+                class="bg-gray-600 
                     text-white
                     rounded-xl px-4 py-1 text-base">
-            {{ $this->category }}</a>
-    </div>
+                {{ $this->category }}</a>
+            <button wire:click="resetFilter"  class="ml-2 hover:text-red-500">
+                X
+            </button>
+        </div>
     @elseif ($this->search)
-    <div class="py-5">
-        <a href=""
-            class="bg-gray-600 
+        <div class="py-5">
+            <a href=""
+                class="bg-gray-600 
                     text-white 
                     rounded-xl px-4 py-1 text-base">{{ $this->search }}</a>
-    </div>
+            <button wire:click="resetFilter" class="ml-2 hover:text-red-500">
+                X
+            </button>
+        </div>
     @endif
 
     @foreach ($posts as $post)
