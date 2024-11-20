@@ -7,6 +7,7 @@ Bloggo è un sito web, indirizzato alla diffusione di informazioni.
 * Laravel 11
 * Livewire
 * MySql
+* Tailwind
 
 
 
